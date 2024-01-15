@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
+require("dotenv").config();
 
 const Product = require("./models/productModel");
 
@@ -76,9 +77,10 @@ app.delete("/products/:id", async (req, res) => {
 });
 
 mongoose
-  .connect(
-    "mongodb+srv://admin:admin@nodeapi.vndlkhk.mongodb.net/?retryWrites=true&w=majority"
-  )
+  .connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => {
     console.log("Databases connected: MongoDB");
     app.listen(PORT, () => {
