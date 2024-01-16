@@ -6,7 +6,7 @@ require("dotenv").config();
 const Product = require("./models/productModel");
 
 app.use(express.json());
-const PORT = 3000;
+const PORT = process.env.PORT;
 
 app.get("/", (req, res) => {
   res.send("Hello Node API");
