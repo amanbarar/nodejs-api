@@ -8,7 +8,12 @@ const productRoute = require("./routes/productRoute");
 const { errorMiddleware } = require("./middlewares/errorMiddleware");
 
 app.use(express.json());
-app.use(cors());
+var corsOptions = {
+    origin: "http://localhost:5173",
+    optionSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
+
 const PORT = process.env.PORT || 3000;
 
 mongoose
