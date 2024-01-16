@@ -6,10 +6,12 @@ require("dotenv").config();
 const app = express();
 const productRoute = require("./routes/productRoute");
 const { errorMiddleware } = require("./middlewares/errorMiddleware");
+const MONGODB_URI = process.env.MONGODB_URI;
+const FRONTEND = process.env.FRONTEND;
 
 app.use(express.json());
 var corsOptions = {
-    origin: process.env.FRONTEND,
+    origin: FRONTEND,
     optionSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
@@ -17,7 +19,7 @@ app.use(cors(corsOptions));
 const PORT = process.env.PORT || 3000;
 
 mongoose
-    .connect(process.env.MONGODB_URI, {
+    .connect(MONGODB_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
